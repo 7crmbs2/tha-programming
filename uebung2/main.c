@@ -22,6 +22,13 @@ if(w1 == w2 && w2 == w3 && w3 == w4){ //ohne w5
 return 0;
 }
 
+char strasse(int w1, int w2, int w3, int w4, int w5) {
+if(w1 == w2 - 1 && w1 == w3 - 2 && w1 == w4 - 3 && w1 == w5 - 4){ //ohne w5
+	return 1;
+}
+return 0;
+}
+
 int main() {
 
 	for(int i = 0; i < 10000; i++){
@@ -29,10 +36,16 @@ int main() {
 	}
 
 	if(viererPasch(1, 2, 1, 1, 1)){
-		printf("WOOOWWW");
+		printf("WOOOWWW\n");
 	} else {
-		printf("NOOOOOO");
+		printf("NOOOOOO\n");
 	}
+
+	if(strasse(1, 2, 3, 4, 5)){
+			printf("WOOOWWW\n");
+		} else {
+			printf("NOOOOOO\n");
+		}
 
     return 0;
 }
