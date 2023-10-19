@@ -24,6 +24,10 @@ return 0;
 
 int main() {
 
+	for(int i = 0; i < 10000; i++){
+		printf("%04i\n", i);
+	}
+
 	if(viererPasch(1, 2, 1, 1, 1)){
 		printf("WOOOWWW");
 	} else {
