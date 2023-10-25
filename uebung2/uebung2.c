@@ -130,7 +130,6 @@ void sanduhr(unsigned int b, char c) { // Print out a hourglass
 }
 
 int main() {
-	/*
 	// Task 1
 	for(int i = 0; i < 10000; i++){
 		printf("%04i\n", i);
@@ -148,10 +147,9 @@ int main() {
 	} else {
 		printf("NOOOOOO\n");
 	}
-	*/
 
 	// Task 3
-	//rechteck(4, 6, 'x');
+	rechteck(4, 6, 'x');
 
 	// Task 4
 	sanduhr(12, 'x');
