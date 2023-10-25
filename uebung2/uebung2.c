@@ -65,9 +65,9 @@ void rechteck(unsigned int breite, unsigned int hoehe, char c) {
 // Task 4
 void sanduhr(unsigned int b, char c) { // Print out a hourglass
 	if (b % 2 == 1){
-		for(int j = b; j > (b/2); j--){ // execute x(width) times -- fuer jedes j in der loop dann eine leerstelle machen - bzw in der mitte wieder weniger
+		for(int j = b; j > (b/2); j--){ // execute first half of the hourglass,  x(width) times
 			int ws = b-j; // calculate the white spaces we need
-			for (int i = 0; i < ws; i++){ // print all the whitespaces necessary for this iteration
+			for (int i = 0; i < ws; i++){ // print the whitespaces for this iteration
 				printf(" ");
 			}
 			if (j == b){
@@ -76,7 +76,7 @@ void sanduhr(unsigned int b, char c) { // Print out a hourglass
 				}
 			} else {
 				printf("%c", c);
-				for (int i = 1; i < j-ws-1; i++){ // print all the characters necessary for this iteration - j as iteration minus the amount of whitespaces we need
+				for (int i = 1; i < j-ws-1; i++){ // print all chars for this iteration - j as iteration minus the amount of whitespaces we need
 					printf(" ");
 				}
 				if (j > (b/2+1)){ // this is needed to ensure the last char is ignored to have a perfect center
@@ -90,18 +90,18 @@ void sanduhr(unsigned int b, char c) { // Print out a hourglass
 			for (int i = 0; i < ws; i++){ // write the necessary white spaces
 				printf(" ");
 			}
-			for (int i = 1; i <= b-(ws+ws); i++){ // write the necessary chars - 2x ws is needed to adjust the spacing on the lift AND right
+			for (int i = 1; i <= b-(ws+ws); i++){ // write the necessary chars - minus 2x ws is needed to adjust the spacing on the lift AND right
 				printf("%c", c);
 			}
 			printf("\n");
 		}
 	} else {
-		for(int j = b; j > (b/2); j--){ // execute x(width) times -- fuer jedes j in der loop dann eine leerstelle machen - bzw in der mitte wieder weniger
+		for(int j = b; j > (b/2); j--){ // execute first half of the hourglass,  x(width) times
 			int ws = b-j; // calculate the white spaces we need
-			for (int i = 0; i < ws; i++){ // print all the whitespaces necessary for this iteration
+			for (int i = 0; i < ws; i++){ // print the whitespaces for this iteration
 				printf(" ");
 			}
-			for (int i = 0; i < j-ws; i++){ // print all the characters necessary for this iteration - j as iteration minus the amount of whitespaces we need
+			for (int i = 0; i < j-ws; i++){ // print all chars for this iteration - j as iteration minus the amount of whitespaces we need
 				printf("%c", c);
 			}
 			printf("\n");
