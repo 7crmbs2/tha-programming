@@ -63,8 +63,39 @@ void rechteck(unsigned int breite, unsigned int hoehe, char c) {
 }
 
 // Task 4
-void sanduhr(unsigned int b, char c) {
+void sanduhr(unsigned int b, char c) { // Print out a hourglass
 	if (b % 2 == 1){
+		for(int j = b; j > (b/2); j--){ // execute x(width) times -- fuer jedes j in der loop dann eine leerstelle machen - bzw in der mitte wieder weniger
+			int ws = b-j; // calculate the white spaces we need
+			for (int i = 0; i < ws; i++){ // print all the whitespaces necessary for this iteration
+				printf(" ");
+			}
+			if (j == b){
+				for (int i = 0; i < j; i++){ // print a whole line of chars in the first row
+					printf("%c", c);
+				}
+			} else {
+				printf("%c", c);
+				for (int i = 1; i < j-ws-1; i++){ // print all the characters necessary for this iteration - j as iteration minus the amount of whitespaces we need
+					printf(" ");
+				}
+				if (j > (b/2+1)){ // this is needed to ensure the last char is ignored to have a perfect center
+					printf("%c", c);
+				}
+			}
+			printf("\n");
+		}
+		for(int j = 1; j <= (b/2); j++){ // j as counter for the second half of the hourwatch
+			int ws = (b/2)-j; // calculate the necessary white spaces
+			for (int i = 0; i < ws; i++){ // write the necessary white spaces
+				printf(" ");
+			}
+			for (int i = 1; i <= b-(ws+ws); i++){ // write the necessary chars - 2x ws is needed to adjust the spacing on the lift AND right
+				printf("%c", c);
+			}
+			printf("\n");
+		}
+	} else {
 		for(int j = b; j > (b/2); j--){ // execute x(width) times -- fuer jedes j in der loop dann eine leerstelle machen - bzw in der mitte wieder weniger
 			int ws = b-j; // calculate the white spaces we need
 			for (int i = 0; i < ws; i++){ // print all the whitespaces necessary for this iteration
@@ -76,50 +107,27 @@ void sanduhr(unsigned int b, char c) {
 			printf("\n");
 		}
 		for(int j = 1; j <= (b/2); j++){ // j as counter for the second half of the hourwatch
-			int ws = (b/2)-j;
-			//int cs = b-j; // calculate the necessary char count
-			for (int i = 0; i < ws; i++){
+			int ws = (b/2)-j; // calculate the necessary white spaces
+			for (int i = 0; i < ws; i++){ // write the necessary white spaces
 				printf(" ");
 			}
-				//printf("%i, %i, %i", ws, ws+ws, b);
-			for (int i = 1; i <= b-(ws+ws); i++){ // +4 is needed to adjust the off
+			if (j == 1){
+				printf("%c%c", c, c);
+			} else if (j == b/2) {
+				for (int i = 0; i < j*2; i++){ // print a whole line of chars in the last row
+					printf("%c", c);
+				}
+			} else {
+				printf("%c", c);
+				for (int i = 1; i <= b-(ws+ws)-2; i++){ // write the necessary chars - 2x ws is needed to adjust the spacing on the lift AND right
+					printf(" ");
+				}
 				printf("%c", c);
 			}
 			printf("\n");
 		}
-	} else {
-		printf("gerade");
 	}
 }
-			/*
-			for(int i = 0; i < b; i++){ //print the first line as width
-				for (int w = j ; w > 0 ; w--){ // width for the corresponding line (j) print x(w) amount of white spaces (w = whitespace)
-					printf(" ");
-				}
-				printf("\n");
-				// if j > b:2 dann wieder mehr leerzeichen
-				// für jedes j ein leerzeichen quasi
-				for (int w = j ; w > 0 ; w--){
-					printf("%c", c);
-				}
-			}
-			printf("\n ");
-
-			for(int i = 0; i < (b - 2); i++){
-				printf("%c", c);
-			}
-			printf("\n ");
-			for(int i = 0; i < b - i; i++){ //print the first line as width
-				printf("%c", c);
-			}
-			printf("\n  ");
-			for(int i = 0; i < b - i; i++){ //print the first line as width
-				printf("%c", c);
-			}
-			*/
-			// große for schleife und nicht b - i sondern in der großen scheleife zB y nehmen und dann immer -y
-			// 6 = 6x6 , 7 = 7x7
-			// ACHTUNG noch ein Unterschied: gerade zahl ist unten leer, und hat immer in der mitte 2 anstatt bei einer ungeraden in der mitte 1
 
 int main() {
 	/*
@@ -146,7 +154,7 @@ int main() {
 	//rechteck(4, 6, 'x');
 
 	// Task 4
-	sanduhr(7, 'x');
+	sanduhr(12, 'x');
 
 	getchar();
 	return 0;
