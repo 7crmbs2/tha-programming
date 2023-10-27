@@ -25,6 +25,10 @@ return 0;
 }
 
 char strasse(int w1, int w2, int w3, int w4, int w5) { // TODO die reihnfolge muss egal sein
+	if (w1 + w2 + w3 + w4 + w5 == 15 || w1 + w2 + w3 + w4 + w5 == 20){
+		return 1;
+	}
+	/*
 	int values[] = { w1, w2, w3, w4, w5 };
 	for(int i=0 ; i < 5; i++){ // iterate through every
 		for(int j=i+1 ; j < 5 ; j++){
@@ -38,21 +42,21 @@ char strasse(int w1, int w2, int w3, int w4, int w5) { // TODO die reihnfolge mu
 	if(values[0] == values[1] - 1 && values[0] == values[2] - 2 && values[0] == values[3] - 3 && values[0] == values[4] - 4){ // check if the numbers are 1 to 5
 		return 1;
 	}
+*/
 return 0;
 }
 
 // Task 3
 void rechteck(unsigned int breite, unsigned int hoehe, char c) {
-	hoehe = hoehe - 2; // This is because we have a top and bottom layer
 	for(int i = 0; i < breite; i++){ //print the first line as width
 		printf("%c", c);
 	}
 	printf("\n");
-	for(int i = 0; i < hoehe; i++){ // for ever hoehe
+	for(int i = 0; i < hoehe - 2; i++){ // for ever hoehe, -2 because we have a top and bottom layer
 		printf("%c", c); // write one edge char
 		for(int i = 0; i < breite - 2; i++){ // skip to the other edge with whitespaces
-				printf(" ");
-			}
+			printf(" ");
+		}
 		printf("%c\n", c);// write another edge char
 	}
 	for(int i = 0; i < breite; i++){ //print the last line as width
@@ -71,15 +75,15 @@ void sanduhr(unsigned int b, char c) { // Print out a hourglass
 				printf(" ");
 			}
 			if (j == b){
-				for (int i = 0; i < j; i++){ // print a whole line of chars in the first row
+				for (int i = 0; i < b; i++){ // print a whole line of chars in the first row
 					printf("%c", c);
 				}
 			} else {
 				printf("%c", c);
-				for (int i = 1; i < j-ws-1; i++){ // print all chars for this iteration - j as iteration minus the amount of whitespaces we need
+				for (int i = 1; i <= j-ws-2; i++){ // -2 bc we print one char foe each edge separatly - print all chars for this iteration - j as iteration minus the amount of whitespaces we need
 					printf(" ");
 				}
-				if (j > (b/2+1)){ // this is needed to ensure the last char is ignored to have a perfect center
+				if (ws < (b/2)){ // this is needed to ensure the last char is ignored to have a perfect center - whitespaces are limited to the middle
 					printf("%c", c);
 				}
 			}
@@ -152,7 +156,7 @@ int main() {
 	rechteck(4, 6, 'x');
 
 	// Task 4
-	sanduhr(12, 'x');
+	sanduhr(14, 'x');
 
 	getchar();
 	return 0;
