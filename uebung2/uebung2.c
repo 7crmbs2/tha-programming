@@ -24,9 +24,11 @@ if(w1 == w2 && w2 == w3 && w3 == w4){ //ohne w5
 return 0;
 }
 
-char strasse(int w1, int w2, int w3, int w4, int w5) { // TODO die reihnfolge muss egal sein
-	if (w1 + w2 + w3 + w4 + w5 == 15 || w1 + w2 + w3 + w4 + w5 == 20){
-		return 1;
+char strasse(int w1, int w2, int w3, int w4, int w5) {
+	if (w1 + w2 + w3 + w4 + w5 == 15 || w1 + w2 + w3 + w4 + w5 == 20){ // Check if SUM is 15 or 20
+		if (w1 != w2 && w1 != w3 && w1 != w4 && w1 != w5 && w2 != w3 && w2 != w4 && w2 != w5 && w3 != w4 && w3 != w5 && w4 != w5 ){
+			return 1;
+		}
 	}
 	/*
 	int values[] = { w1, w2, w3, w4, w5 };
