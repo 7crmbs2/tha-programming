@@ -26,7 +26,7 @@ return 0;
 
 char strasse(int w1, int w2, int w3, int w4, int w5) {
 	if (w1 + w2 + w3 + w4 + w5 == 15 || w1 + w2 + w3 + w4 + w5 == 20){ // Check if SUM is 15 or 20
-		if (w1 != w2 && w1 != w3 && w1 != w4 && w1 != w5 && w2 != w3 && w2 != w4 && w2 != w5 && w3 != w4 && w3 != w5 && w4 != w5 ){
+		if (w1 != w2 && w1 != w3 && w1 != w4 && w1 != w5 && w2 != w3 && w2 != w4 && w2 != w5 && w3 != w4 && w3 != w5 && w4 != w5){ // check if all dice are unique
 			return 1;
 		}
 	}
@@ -142,16 +142,16 @@ int main() {
 	}
 
 	// Task 2
-	if(viererPasch(1, 2, 1, 1, 1)){
-		printf("WOOOWWW\n");
+	if(viererPasch(1, 2, 1, 2, 1)){
+		printf("Wow, four of a kind in one roll?!?!\n");
 	} else {
-		printf("NOOOOOO\n");
+		printf("You didn't get four of a kind.\n");
 	}
 
-	if(strasse(4, 3, 2, 1, 5)){
-		printf("WOOOWWW\n");
+	if(strasse(4, 2, 2, 2, 5)){
+		printf("It's a big street!\n");
 	} else {
-		printf("NOOOOOO\n");
+		printf("This is no street!\n");
 	}
 
 	// Task 3
