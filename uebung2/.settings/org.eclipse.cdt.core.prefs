@@ -1,6 +1,0 @@
-eclipse.preferences.version=1
-environment/project/cdt.managedbuild.config.gnu.exe.debug.504146205/PATH/delimiter=\:
-environment/project/cdt.managedbuild.config.gnu.exe.debug.504146205/PATH/operation=append
-environment/project/cdt.managedbuild.config.gnu.exe.debug.504146205/PATH/value=${MINGW_HOME}/bin\:${MSYS_HOME}/bin\:${MSYS_HOME}/usr/bin\:/usr/local/bin\:/usr/local/sbin\:/home/ju/.local/bin\:/usr/bin\:/var/lib/snapd/snap/bin\:/usr/bin/site_perl\:/usr/bin/vendor_perl\:/usr/bin/core_perl
-environment/project/cdt.managedbuild.config.gnu.exe.debug.504146205/append=true
-environment/project/cdt.managedbuild.config.gnu.exe.debug.504146205/appendContributed=true
