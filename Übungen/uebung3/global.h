@@ -103,15 +103,15 @@ void initMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length) { /
 }
 
 void setMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, int numberOfMines) {
-	int counter;
+	int minesSet;
 	for (int i = 0; i < numberOfMines; i++){
-		counter = i;
-		int xcoord = myRand(length-1);
-		int ycoord = myRand(length-1);
-		while (counter == i) {
+		minesSet = i;
+		while (minesSet == i) {
+			int xcoord = myRand(length-1);
+			int ycoord = myRand(length-1);
 			if (matrix[xcoord][ycoord] != TYP_MINE){
 				matrix[xcoord][ycoord] = TYP_MINE;
-				counter++;
+				minesSet++;
 			}
 		}
 
