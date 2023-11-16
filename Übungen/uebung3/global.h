@@ -103,17 +103,18 @@ void initMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length) { /
 }
 
 void setMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, int numberOfMines) {
-	/*
-	 * one could go crazy to ensure that there are no mines on the same fields == lesser mines
-	 * but in testing it seemed like this doesnt really happen so I dont think its necessary to implement
-	int hitFields[numberOfMines][2];
-	hitFields[i][0] = xcoord;
-	hitFields[i][1] = ycoord;
-	*/
+	int counter;
 	for (int i = 0; i < numberOfMines; i++){
+		counter = i;
 		int xcoord = myRand(length-1);
 		int ycoord = myRand(length-1);
-		matrix[xcoord][ycoord] = TYP_MINE;
+		while (counter == i) {
+			if (matrix[xcoord][ycoord] != TYP_MINE){
+				matrix[xcoord][ycoord] = TYP_MINE;
+				counter++;
+			}
+		}
+
 	}
 
 }
