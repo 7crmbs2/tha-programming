@@ -18,6 +18,7 @@ int main(void) {
 	srand(time(&seconds)); // randomize seed - time in seconds from the beginning of time (1.1.1970)
 
 	/*
+	 */
 	char myArray[ARRAYSIZE] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 	printArray(myArray, 10);
 
@@ -34,7 +35,6 @@ int main(void) {
 	printMatrix(myMatrix1, 3, VALUE);
 	printMatrix(myMatrix2, 10, CHAR);
 
-	 */
 	/*
 	char randomArray[10];
 	setArray(randomArray, 10, 0);
@@ -50,6 +50,6 @@ int main(void) {
 	unsigned char minefield[MATRIXSIZE][MATRIXSIZE];
 	initMinefield(minefield, 10);
 	setMinefield(minefield, 10, 7);
-	printMinefield(minefield, 11, 7);
 	calcDangerzone(minefield, 10, 7);
+	printMinefield(minefield, 11, 7);
 }

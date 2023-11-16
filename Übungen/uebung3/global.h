@@ -68,7 +68,6 @@ void setMatrix(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, unsigne
 			matrix[i][j] = value;
 		}
 	}
-
 }
 
 unsigned char myRand(int max) {
@@ -158,12 +157,16 @@ void calcDangerzone(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, in
 		for (int j = 1; j <=  length - 1; j++){
 			if (matrix[i][j] != TYP_MINE){
 				checkNeighbors(matrix, i, j);
-				printf("%i", mineCounter);
-			} else {
+				matrix[i][j] = mineCounter;
+				//printf("%i", mineCounter); // This would be the case if you want it to be displayed below (and uncomment the next few lines)
+			}
+			/*
+			else {
 				printf(" ");
 			}
+			 */
 		}
-		printf("\n");
+		// printf("\n");
 	}
 }
 
