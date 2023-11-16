@@ -135,11 +135,9 @@ void printMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, in
 	printf("\n");
 }
 
-int mineCounter = 0;
-
 void checkNeighbors(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int y, int x) {
 	if (matrix[y][x] == TYP_GRASS) {
-		mineCounter = 0; // reset mineCounter for new count
+		int mineCounter = 0; // reset mineCounter for new count
 		for (int i = -1; i < 2; i++){
 			for (int j = -1; j < 2; j++){
 				if (matrix[y + i][x + j] == TYP_MINE && matrix[y + i][x + j] != matrix[y][x]){
@@ -158,7 +156,6 @@ void calcDangerzone(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, in
 		for (int j = 1; j <=  length - 1; j++){
 			if (matrix[i][j] != TYP_MINE){
 				checkNeighbors(matrix, i, j);
-				matrix[i][j] = mineCounter;
 				//printf("%i", mineCounter); // This would be the case if you want it to be displayed below (and uncomment the next few lines)
 			}
 			/*
