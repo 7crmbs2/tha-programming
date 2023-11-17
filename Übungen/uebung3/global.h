@@ -32,39 +32,31 @@ void printArray(unsigned char* array, int length) {
 }
 
 void printMatrix(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, int type) {
-
-	if (type == 1){ // check if its a value
-		for (int i = 0; i <= length - 1; i++){ // or just < but then we cant do -1
-			for (int j = 0; j <=  length - 1; j++){
+	for (int i = 0; i < length; i++){ // or just < but then we cant do -1
+		for (int j = 0; j <  length; j++){
+			if (type == VALUE) {
 				printf("%02i ", (int)matrix[i][j]); // convert char from matrix into int and print it
+			} else if (type == CHAR) {
+				printf("%c ", (char)matrix[i][j]); // print matrix field (as char)
+			} else {
+				printf("This is not the correct input for printMatrix.\n");
 			}
-			printf("\n\n");
 		}
-
-	} else if (type == 0){ // check if its a char
-		for (int i = 0; i <= length - 1; i++){ // or just < but then we cant do -1
-			for (int j = 0; j <=  length - 1; j++){
-				printf("%c ", (char)matrix[i][j]); // convert char from matrix into int and print it
-			}
-			printf("\n\n");
-		}
-
-	} else { // tell the user the input is wrong
-		printf("well this is awkward... You didn't enter a valid Value for the type.");
+		printf("\n\n");
 	}
 	printf("\n");
 }
 
 /* Aufgabe – Zufallszahlen */
 void setArray(unsigned char* array, int length, unsigned char value) {
-	for (int i = 0; i < length - 1; i++) {
+	for (int i = 0; i < length; i++) {
 		array[i] = value;
 	}
 }
 
 void setMatrix(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, unsigned char value) {
-	for (int i = 0; i <= length - 1; i++) {
-		for (int j = 0; j <= length - 1; j++) {
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < length; j++) {
 			matrix[i][j] = value;
 		}
 	}
@@ -75,7 +67,7 @@ unsigned char myRand(int max) {
 }
 
 void randArray(unsigned char* array, int length, int max) {
-	for (int i = 0; i < length - 1; i++) {
+	for (int i = 0; i < length; i++) {
 		array[i] = myRand(max);
 	}
 }
@@ -107,8 +99,11 @@ void setMinefield(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, int 
 	for (int i = 0; i < numberOfMines; i++){
 		minesSet = i;
 		while (minesSet == i) {
-			int xcoord = myRand(length-1);
-			int ycoord = myRand(length-1);
+			// Switch between these to have the mines more centered or not
+			// int xcoord = myRand(length-1);
+			// int ycoord = myRand(length-1);
+			int xcoord = myRand((length-1)/2) + myRand((length-1)/2);
+			int ycoord = myRand((length-1)/2) + myRand((length-1)/2);
 			if (matrix[xcoord][ycoord] != TYP_MINE){
 				matrix[xcoord][ycoord] = TYP_MINE;
 				minesSet++;
@@ -140,13 +135,12 @@ void checkNeighbors(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int y, int x) 
 		int mineCounter = 0; // reset mineCounter for new count
 		for (int i = -1; i < 2; i++){
 			for (int j = -1; j < 2; j++){
-				if (matrix[y + i][x + j] == TYP_MINE && matrix[y + i][x + j] != matrix[y][x]){
+				if (matrix[y + i][x + j] == TYP_MINE){
 					mineCounter++;
 				}
 			}
 		}
 		matrix[y][x] = mineCounter;
-		//printf("%i", mineCounter);
 	}
 }
 
@@ -156,22 +150,12 @@ void calcDangerzone(unsigned char matrix[MATRIXSIZE][MATRIXSIZE], int length, in
 		for (int j = 1; j <=  length - 1; j++){
 			if (matrix[i][j] != TYP_MINE){
 				checkNeighbors(matrix, i, j);
-				//printf("%i", mineCounter); // This would be the case if you want it to be displayed below (and uncomment the next few lines)
 			}
-			/*
-			else {
-				printf(" ");
-			}
-			 */
 		}
-		// printf("\n");
 	}
 }
 
 // Aufgabe - Sudoku Test
-char lineTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int line, int length) {
-/* IHR CODE */ }
-char columnTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int column, int length)
-{ /* IHR CODE */ }
-char sudokuTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int length)
-{ /* IHR CODE */ }
+// char lineTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int line, int length) { /* IHR CODE */ }
+//char columnTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int column, int length) { /* IHR CODE */ }
+//char sudokuTest(const char matrix[MATRIXSIZE][MATRIXSIZE], int length) { /* IHR CODE */ }

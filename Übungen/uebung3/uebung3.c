@@ -48,8 +48,8 @@ int main(void) {
 	*/
 
 	unsigned char minefield[MATRIXSIZE][MATRIXSIZE];
-	initMinefield(minefield, 10);
-	setMinefield(minefield, 10, 7);
-	calcDangerzone(minefield, 10, 7);
-	printMinefield(minefield, 11, 7);
+	initMinefield(minefield, 20);
+	setMinefield(minefield, 20, 100);
+	calcDangerzone(minefield, 20, 7);
+	printMinefield(minefield, 21, 7);
 }
