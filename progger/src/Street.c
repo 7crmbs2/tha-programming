@@ -57,8 +57,8 @@ char street_check_free(Street* s_ptr, int number) // return 1 = number*space is 
 		}
 	} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
 		char spaceUsed = 0;
-		for (int i = STREET_LENGTH; i < (STREET_LENGTH-number); i--){  // check for spaces in number of fields at the end
-			if (s_ptr->fields[i] != ' '){
+		for (int i = STREET_LENGTH; i < (STREET_LENGTH-number); i--){
+			if (s_ptr->fields[i] != ' '){   // check for spaces in number of fields at the end
 				spaceUsed = 1;
 			}
 		}
@@ -69,17 +69,55 @@ char street_check_free(Street* s_ptr, int number) // return 1 = number*space is 
 	return 1; // if the space is available return 1
 }
 
-void street_add_car(Street* s_ptr, int length)
+void street_add_car(Street* s_ptr, int length) // add a car to a street
 {
-	/* IHR CODE */
+	if (s_ptr->direction == TRAFFIC_LEFT){ // if the traffic comes from the left
+		for (int i = 0; i < length; i++){
+			s_ptr->fields[i] = 'X'; // set X for length at beginning
+		}
+	} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
+		for (int i = STREET_LENGTH; i > (STREET_LENGTH - length); i++){
+			s_ptr->fields[i] = 'X'; // set X for length at end
+		}
+	}
 }
 
 char street_check_field(Street* s_ptr, int xpos, int ypos)
 {
-	/* IHR CODE */
+	if (s_ptr->y == ypos && s_ptr->fields[s_ptr->offset + xpos] == 'X'){
+		return 1;
+	}
 	return 0;
 }
-void street_print(Street* s_ptr)
+void street_print(Street* s_ptr) // print the street
 {
-	/* IHR CODE */
+	// feld ausgeben im bereich i >= offset && i < STREET_LENGTH - offset
+	// if feld X dann Hintergrund auf straßenfarbe setzen
+	// ansonsten Hintergrund schwarz
+	// Leerzeichen printen
+	// ganz am ende der straße nochmal Hintergrund auf schwarz
+
+	for (int i = s_ptr->offset; i < (STREET_LENGTH - s_ptr->offset); i++){
+		if (s_ptr->fields[i] == 'X'){
+			// cursor_setze_farbe() hpallette[16]
+			// SET background zu schwarz
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
