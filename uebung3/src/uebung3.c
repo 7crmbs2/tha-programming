@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : progger.c
+ Name        : uebung3.c
  Author      : Julian Di Luzio
  Version     :
  Copyright   : Your copyright notice
@@ -12,7 +12,6 @@
 #include <stdlib.h>
 
 int main(void) {
-	Street* memAddress = street_create();
-	printf("%s", &memAddress);
+	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
 	return EXIT_SUCCESS;
 }

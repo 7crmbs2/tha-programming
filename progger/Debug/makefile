@@ -39,7 +39,7 @@ main-build: progger
 # Tool invocations
 progger: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: Cross GCC Linker'
+	@echo 'Invoking: GCC C Linker'
 	gcc  -o "progger" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '

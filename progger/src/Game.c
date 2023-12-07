@@ -48,7 +48,7 @@ void game_run(Game* game_ptr)
 		//Check Player Position and Collision
 		game_check(game_ptr);
 		//Paus Main-Thread to slow down the game
-		Sleep(GAME_TICK_DURATION_MS);
+		sleep(GAME_TICK_DURATION_MS);
 	}
 	//Game Over
 	console_leeren();				//Leere Terminal
