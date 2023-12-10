@@ -9,8 +9,8 @@ Street* street_create() // allocate space for a Street type and return the Addre
 {
 	Street *address;
 	// dynamic memory allocation to runtime
-	// int + int + int + char*STREET_LENGTH + char*10 + char = 3x4 + 10+20+10 + 10 + 1 = 63 - so lets do 100
-	address = malloc(100 * sizeof(char));
+	// sizeof just pretty much does this: int + int + int + char*STREET_LENGTH + char*10 + char = 3x4 + 10+20+10 + 10 + 1 = 63
+	address = malloc(sizeof(Street));
 	//malloc returns NULL pointer, if the allocation fails
 	if (address == NULL)
 	{
@@ -99,11 +99,11 @@ char street_check_field(Street* s_ptr, int xpos, int ypos)
 void street_print(Street* s_ptr) // print the street
 {
 	for (int i = s_ptr->offset; i < (STREET_LENGTH - s_ptr->offset); i++){
+		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 		if (s_ptr->fields[i] == 'X'){
 			cursor_setze_farbe(s_ptr->color); // set background to street color
-		} else {
-			cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 		}
+		cursor_bewegen(i, s_ptr->y);
 		printf(" ");
 		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	}
