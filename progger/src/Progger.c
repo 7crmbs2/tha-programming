@@ -17,8 +17,10 @@ int main()
 {
 	//Auskommentieren für finalen Spieltest
 	//start();
-	//Street* memAddress = street_create();
-	//street_init(memAddress, 2, 2, STREET_OFFSET, '\[\033[0;35m\]', 2);
-	printf("Hello");
+	Street* myStreet = street_create();
+	street_init(myStreet, 2, 2, STREET_OFFSET, hpallette[6], 1);
+	street_add_car(myStreet, 20);
+	street_print(myStreet);
+
 	return 0;
 }
