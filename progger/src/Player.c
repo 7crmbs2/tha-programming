@@ -40,10 +40,29 @@ void player_print(Player* p_ptr) // TODO this doesnt seem done
 
 void player_move(Player* p_ptr, char direction)
 {
-	/* IHR CODE */
+	int speed = 1;
+
+	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
+	cursor_bewegen(p_ptr->x, p_ptr->y); // move the curser to the correct coordinates
+	printf(' ');
+
+	if (direction == PLAYER_UP) {
+		curser_hoch(speed);
+	} else if (direction == PLAYER_DOWN) {
+		curser_runter(speed);
+	} else if (direction == PLAYER_RIGHT) {
+		curser_rechts(speed);
+	} else if (direction == PLAYER_LEFT) {
+		curser_links(speed);
+	}
+
+	player_print(p_ptr);
+
 }
 char player_compare(Player* player1_ptr, Player* player2_ptr)
 {
-	/* IHR CODE */
+	if (player1_ptr->x == player2_ptr->x && player1_ptr->y == player2_ptr->y){
+		return 1;
+	}
 	return 0;
 }
