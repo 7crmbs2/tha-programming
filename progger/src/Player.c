@@ -27,11 +27,12 @@ void player_init(Player* p_ptr)
 	strcpy(p_ptr->color, PLAYER_COLOR);
 }
 
-void player_print(Player* p_ptr)
+void player_print(Player* p_ptr) // TODO this doesnt seem done
 {
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	cursor_setze_farbe(p_ptr->color); // set cursor to player color
-
+	cursor_bewegen(p_ptr->x, p_ptr->y);
+	cursor_setze_farbe(CURSOR_SCHWARZ); // set curser to black
 }
 
 void player_move(Player* p_ptr, char direction)
