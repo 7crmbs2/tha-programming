@@ -4,6 +4,8 @@
 #include"Cursor.h"
 #include"Console.h"
 #include <string.h>
+// this import would be needed to do printf so that migth not be the correct approach
+#include <stdio.h>
 
 Player* player_create()
 {
@@ -31,7 +33,8 @@ void player_print(Player* p_ptr) // TODO this doesnt seem done
 {
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	cursor_setze_farbe(p_ptr->color); // set cursor to player color
-	cursor_bewegen(p_ptr->x, p_ptr->y);
+	cursor_bewegen(p_ptr->x, p_ptr->y); // move the curser to the correct coordinates
+	printf("%c", p_ptr->symbol); // print player symbol
 	cursor_setze_farbe(CURSOR_SCHWARZ); // set curser to black
 }
 
