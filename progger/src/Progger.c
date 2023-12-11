@@ -4,10 +4,6 @@
 #include "Cursor.h"
 #include "Game.h"
 
-// temporary import for testing
-#include "Player.c"
-#include "Player.h"
-
 void start()
 {
 	console_init();
@@ -32,9 +28,11 @@ int main()
 	street_add_car(myStreet2, 20);
 	street_print(myStreet2);
 
+	/*
 	Player* myPlayer;
 	player_init(myPlayer);
 	player_print(myPlayer);
+	*/
 
 	return 0;
 }
