@@ -1,8 +1,8 @@
 #include "Player.h"
 #include "Configuration.h"
 #include <stdlib.h>
-#include"Cursor.h"
-#include"Console.h"
+#include "Cursor.h"
+#include "Console.h"
 #include <string.h>
 // this import would be needed to do printf so that migth not be the correct approach
 #include <stdio.h>
@@ -33,9 +33,9 @@ void player_print(Player* p_ptr) // TODO this doesnt seem done
 {
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	cursor_setze_farbe(p_ptr->color); // set cursor to player color
-	cursor_bewegen(p_ptr->x, p_ptr->y); // move the curser to the correct coordinates
+	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
 	printf("%c", p_ptr->symbol); // print player symbol
-	cursor_setze_farbe(CURSOR_SCHWARZ); // set curser to black
+	cursor_setze_farbe(CURSOR_SCHWARZ); // set cursor to black
 }
 
 void player_move(Player* p_ptr, char direction)
@@ -43,17 +43,17 @@ void player_move(Player* p_ptr, char direction)
 	int speed = 1;
 
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
-	cursor_bewegen(p_ptr->x, p_ptr->y); // move the curser to the correct coordinates
+	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
 	printf(' ');
 
 	if (direction == PLAYER_UP) {
-		curser_hoch(speed);
+		cursor_hoch(speed);
 	} else if (direction == PLAYER_DOWN) {
-		curser_runter(speed);
+		cursor_runter(speed);
 	} else if (direction == PLAYER_RIGHT) {
-		curser_rechts(speed);
+		cursor_rechts(speed);
 	} else if (direction == PLAYER_LEFT) {
-		curser_links(speed);
+		cursor_links(speed);
 	}
 
 	player_print(p_ptr);

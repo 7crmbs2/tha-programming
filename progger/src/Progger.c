@@ -29,6 +29,10 @@ int main()
 	street_print(myStreet2);
 
 	/*
+	Scoreboard* myBoard = scoreboard_create();
+	scoreboard_init(myBoard);
+	scoreboard_print(myBoard);
+
 	Player* myPlayer;
 	player_init(myPlayer);
 	player_print(myPlayer);
