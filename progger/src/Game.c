@@ -12,12 +12,54 @@
 #include "Cursor.h"
 Game* game_create()
 {
-	/* IHR CODE */
-	return NULL;
+	Game *address;
+	// dynamic memory allocation to runtime
+	address = malloc(sizeof(Game));
+	//malloc returns NULL pointer, if the allocation fails
+	if (address == NULL)
+	{
+		printf("Fehler - Speicherallokierung nicht möglich\n");
+		return NULL;
+	}
+	return address;
 }
+
+
+
+
 void game_init(Game* game_ptr)
 {
-	/* IHR CODE */
+	// create a street NUMBER_OF_STREETS times and put it into the game
+	// TODO we might need to get some random values in here if we add cars
+	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+		short randColor = (rand() % 14) + 1; // we have 16 elements so 0-15 - not 0 because not black
+		short randDir = rand() % 1; // set random direction for each street
+		short randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car
+
+		game_ptr->road[i] = street_create();
+		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], randDir);
+		street_add_car(game_ptr->road[i], randCar);
+	}
+	game_ptr->player_ptr = player_create();
+	player_init(game_ptr->player_ptr);
+	player_print(game_ptr->player_ptr);
+
+	game_ptr->scoreboard_ptr = scoreboard_create();
+	scoreboard_init(game_ptr->scoreboard_ptr);
+	scoreboard_print(game_ptr->scoreboard_ptr);
+
+	game_ptr->destination_ptr = player_create();
+	player_init(game_ptr->destination_ptr);
+	game_ptr->destination_ptr->symbol = '*';
+	game_ptr->destination_ptr->y = STREET_FIRST_Y - 2;
+	player_print(game_ptr->destination_ptr);
+
+	game_ptr->input_ptr = input_create();
+
+	console_zeichne_rechteck(0, 0, 50, 50, hpallette[12]);
+
+	game_ptr->run = 1;
+
 }
 void game_add_traffic(Game* game_ptr)
 {
@@ -47,7 +89,7 @@ void game_run(Game* game_ptr)
 		game_print(game_ptr);
 		//Check Player Position and Collision
 		game_check(game_ptr);
-		//Paus Main-Thread to slow down the game
+		//Pause Main-Thread to slow down the game
 		sleep(GAME_TICK_DURATION_MS);
 	}
 	//Game Over

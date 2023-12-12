@@ -15,8 +15,10 @@ void start()
 }
 int main()
 {
+	srand(time(NULL));
 	//Auskommentieren für finalen Spieltest
 	//start();
+	/*
 	Street* myStreet = street_create();
 	street_init(myStreet, 2, 5, STREET_OFFSET, hpallette[6], 1);
 	street_add_car(myStreet, 20);
@@ -28,7 +30,6 @@ int main()
 	street_add_car(myStreet2, 20);
 	street_print(myStreet2);
 
-	/*
 	Scoreboard* myBoard = scoreboard_create();
 	scoreboard_init(myBoard);
 	scoreboard_print(myBoard);
