@@ -20,16 +20,9 @@ Game* game_create()
 	return address;
 }
 
-
-
-
 void game_init(Game* game_ptr)
 {
-	// initscr();
-
 	// create a street NUMBER_OF_STREETS times and put it into the game
-	/*
-	*/
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
 		int randColor = (rand() % 15) + 1; // we have 16 elements so 0-15 - not 0 because not black
 		int randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car length
@@ -56,15 +49,12 @@ void game_init(Game* game_ptr)
 
 	game_ptr->input_ptr = input_create();
 
+	// draw a rectangle as game field
 	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y, STREET_VISIBLE, PLAYER_YPOS + 2, PLAYGROUND_BOARDER_COLOR);
 
-	/*
 	game_ptr->run = 1;
-	*/
-
-	getchar();
-
 }
+
 void game_add_traffic(Game* game_ptr)
 {
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
@@ -72,10 +62,12 @@ void game_add_traffic(Game* game_ptr)
 		street_add_car(game_ptr->road[i], randCar); // add the car to the road if possible
 	}
 }
+
 void game_proceed(Game* game_ptr)
 {
 	/* IHR CODE */
 }
+
 void game_print(Game* game_ptr)
 {
 	/* IHR CODE */
@@ -106,12 +98,6 @@ void game_run(Game* game_ptr)
 	cursor_setze_farbe(CURSOR_GRUEN);
 	printf("GAME OVER!");
 	scoreboard_print(game_ptr->scoreboard_ptr);
-
-	//TODO my code, maybe remove this later
-	/*
-	getchar();
-	endwin();
-	*/
 }
 
 void game_draw_border(Game* game_ptr)
