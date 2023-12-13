@@ -4,6 +4,11 @@
 #include "Cursor.h"
 #include "Game.h"
 
+// added myself for testing
+//#include <ctime>
+#include <ncurses.h>
+
+
 void start()
 {
 	console_init();
@@ -13,9 +18,11 @@ void start()
 	game_run(game_ptr);
 	cursor_bewegen(0, 20);
 }
+
 int main()
 {
-	srand(time(NULL));
+	srand(20);
+
 	//Auskommentieren für finalen Spieltest
 	//start();
 	/*

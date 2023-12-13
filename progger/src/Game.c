@@ -4,12 +4,13 @@
 #include <conio.h>	 //Nicht-blockierendes Einlesen
 #else
 #include <unistd.h>  //Sleep usleep();
-//#include <ncurses.h>
+#include <ncurses.h>
 #endif
 #include "Player.h"
 #include "Input.h"
 #include "Scoreboard.h"
 #include "Cursor.h"
+
 Game* game_create()
 {
 	Game *address;
@@ -29,8 +30,9 @@ Game* game_create()
 
 void game_init(Game* game_ptr)
 {
+	initscr();
+
 	// create a street NUMBER_OF_STREETS times and put it into the game
-	// TODO we might need to get some random values in here if we add cars
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
 		short randColor = (rand() % 14) + 1; // we have 16 elements so 0-15 - not 0 because not black
 		short randDir = rand() % 1; // set random direction for each street
@@ -99,6 +101,12 @@ void game_run(Game* game_ptr)
 	cursor_setze_farbe(CURSOR_GRUEN);
 	printf("GAME OVER!");
 	scoreboard_print(game_ptr->scoreboard_ptr);
+
+	//TODO my code, maybe remove this later
+	/*
+	getchar();
+	endwin();
+	*/
 }
 
 void game_draw_border(Game* game_ptr)
