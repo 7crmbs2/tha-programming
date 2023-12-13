@@ -96,14 +96,15 @@ char street_check_field(Street* s_ptr, int xpos, int ypos)
 	}
 	return 0;
 }
+
 void street_print(Street* s_ptr) // print the street
 {
 	for (int i = s_ptr->offset; i < (STREET_LENGTH - s_ptr->offset); i++){
+		cursor_bewegen(PLAYGROUND_OFFSET_X + i,s_ptr->y);
 		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 		if (s_ptr->fields[i] == 'X'){
 			cursor_setze_farbe(s_ptr->color); // set background to street color
 		}
-		cursor_bewegen(i, s_ptr->y);
 		printf(" ");
 		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	}

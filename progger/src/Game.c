@@ -76,6 +76,7 @@ void game_proceed(Game* game_ptr)
 void game_print(Game* game_ptr)
 {
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+		cursor_bewegen(PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y);
 		street_print(game_ptr->road[i]);
 	}
 	player_print(game_ptr->player_ptr);
@@ -110,7 +111,8 @@ void game_run(Game* game_ptr)
 
 void game_draw_border(Game* game_ptr) // draw the game border
 {
-	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y, STREET_VISIBLE, PLAYER_YPOS + 2, PLAYGROUND_BOARDER_COLOR);
+	// STREET_VISIBLE + 2 and then - 1 on the x to ensure no overlap
+	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X - 1, PLAYGROUND_OFFSET_Y - 1, STREET_VISIBLE + 2, PLAYER_YPOS + 1, PLAYGROUND_BOARDER_COLOR);
 }
 
 void game_check(Game* game_ptr)
