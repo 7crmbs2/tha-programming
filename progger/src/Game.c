@@ -29,7 +29,7 @@ void game_init(Game* game_ptr)
 		char randDir = rand() % 2; // set random direction for each street
 
 		game_ptr->road[i] = street_create();
-		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], 0);
+		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], randDir);
 		street_add_car(game_ptr->road[i], randCar);
 	}
 
@@ -123,7 +123,27 @@ void game_check(Game* game_ptr)
 		player_init(game_ptr->player_ptr);
 		player_print(game_ptr->player_ptr);
 		player_print(game_ptr->destination_ptr);
-	} else { // check if player is coliding with car for every street
+		return;
+	}
+	// check if player is coliding with car for every street
+	// street_check_field(game_ptr->road)
+	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+
+		// street_check_field verwenden
+
+		if (game_ptr->player_ptr->y == game_ptr->road[i]->y && game_ptr->player_ptr->x == game_ptr->road[i]->x){ // check if player is coliding with car
+			game_ptr->scoreboard_ptr->lives -= 1; // remove one life
+			player_init(game_ptr->player_ptr); // reset player
+			player_print(game_ptr->player_ptr);
+			if (game_ptr->scoreboard_ptr->lives <= 0){ // check if lives ran out
+				game_ptr->run = 0; // end game
+			}
+		}
+	}
+}
+
+
+		/*
 		for (int i = 0; i < NUMBER_OF_STREETS; i++){
 
 			// street_check_field verwenden
@@ -148,4 +168,5 @@ void game_check(Game* game_ptr)
 			game_ptr->run = 0; // end game
 		}
 	}
-}
+	*/
+
