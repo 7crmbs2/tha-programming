@@ -81,7 +81,7 @@ void street_add_car(Street* s_ptr, int length) // add a car to a street
 	}
 }
 
-char street_check_field(Street* s_ptr, int xpos, int ypos)
+char street_check_field(Street* s_ptr, int xpos, int ypos) // check if there is an X on the position of the street
 {
 	if (s_ptr->y == ypos && s_ptr->fields[s_ptr->offset + xpos] == 'X'){
 		return 1;

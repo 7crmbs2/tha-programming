@@ -126,36 +126,15 @@ void game_check(Game* game_ptr)
 		return;
 	}
 	// check if player is coliding with car for every street
-	// street_check_field(game_ptr->road)
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
-
-		// street_check_field verwenden
-
-		if (game_ptr->player_ptr->y == game_ptr->road[i]->y && game_ptr->player_ptr->x == game_ptr->road[i]->x){ // check if player is coliding with car
+		if (street_check_field(game_ptr->road[i], game_ptr->player_ptr->x, game_ptr->player_ptr->y)){ // check if player is coliding with car
 			game_ptr->scoreboard_ptr->lives -= 1; // remove one life
 			player_init(game_ptr->player_ptr); // reset player
 			player_print(game_ptr->player_ptr);
 			if (game_ptr->scoreboard_ptr->lives <= 0){ // check if lives ran out
 				game_ptr->run = 0; // end game
 			}
-		}
-	}
-}
-
-
-		/*
-		for (int i = 0; i < NUMBER_OF_STREETS; i++){
-
-			// street_check_field verwenden
-
-			if (game_ptr->player_ptr->y == game_ptr->road[i]->y && game_ptr->player_ptr->x == game_ptr->road[i]->x){ // check if player is coliding with car
-				game_ptr->scoreboard_ptr->lives -= 1; // remove one life
-				player_init(game_ptr->player_ptr); // reset player
-				player_print(game_ptr->player_ptr);
-				if (game_ptr->scoreboard_ptr->lives <= 0){ // check if lives ran out
-					game_ptr->run = 0; // end game
-				}
-			}
+			return;
 		}
 	}
 	if (((game_ptr->player_ptr->x <= STREET_OFFSET + PLAYGROUND_OFFSET_X) || (game_ptr->player_ptr->x >= PLAYGROUND_OFFSET_X + STREET_OFFSET + STREET_VISIBLE)) ||
@@ -168,5 +147,4 @@ void game_check(Game* game_ptr)
 			game_ptr->run = 0; // end game
 		}
 	}
-	*/
-
+}
