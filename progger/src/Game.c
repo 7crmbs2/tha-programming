@@ -1,11 +1,6 @@
 #include "Game.h"
-#ifdef _WIN32
-#include <Windows.h> //Sleep
-#include <conio.h>	 //Nicht-blockierendes Einlesen
-#else
 #include <unistd.h>  //Sleep usleep();
 #include <ncurses.h>
-#endif
 #include "Player.h"
 #include "Input.h"
 #include "Scoreboard.h"
@@ -13,7 +8,7 @@
 
 Game* game_create()
 {
-	Game *address;
+	Game* address;
 	// dynamic memory allocation to runtime
 	address = malloc(sizeof(Game));
 	//malloc returns NULL pointer, if the allocation fails
@@ -30,18 +25,21 @@ Game* game_create()
 
 void game_init(Game* game_ptr)
 {
-	initscr();
+	// initscr();
 
 	// create a street NUMBER_OF_STREETS times and put it into the game
+	/*
+	*/
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
-		short randColor = (rand() % 14) + 1; // we have 16 elements so 0-15 - not 0 because not black
-		short randDir = rand() % 1; // set random direction for each street
-		short randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car
+		int randColor = (rand() % 15) + 1; // we have 16 elements so 0-15 - not 0 because not black
+		int randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car length
+		char randDir = rand() % 2; // set random direction for each street
 
 		game_ptr->road[i] = street_create();
 		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], randDir);
 		street_add_car(game_ptr->road[i], randCar);
 	}
+
 	game_ptr->player_ptr = player_create();
 	player_init(game_ptr->player_ptr);
 	player_print(game_ptr->player_ptr);
@@ -58,14 +56,21 @@ void game_init(Game* game_ptr)
 
 	game_ptr->input_ptr = input_create();
 
-	console_zeichne_rechteck(0, 0, 50, 50, hpallette[12]);
+	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y, STREET_VISIBLE, PLAYER_YPOS + 2, PLAYGROUND_BOARDER_COLOR);
 
+	/*
 	game_ptr->run = 1;
+	*/
+
+	getchar();
 
 }
 void game_add_traffic(Game* game_ptr)
 {
-	/* IHR CODE */
+	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+		short randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car length
+		street_add_car(game_ptr->road[i], randCar); // add the car to the road if possible
+	}
 }
 void game_proceed(Game* game_ptr)
 {

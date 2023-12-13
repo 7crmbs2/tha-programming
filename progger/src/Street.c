@@ -7,7 +7,7 @@
 
 Street* street_create() // allocate space for a Street type and return the Address
 {
-	Street *address;
+	Street* address;
 	// dynamic memory allocation to runtime
 	// sizeof just pretty much does this: int + int + int + char*STREET_LENGTH + char*10 + char = 3x4 + 10+20+10 + 10 + 1 = 63
 	address = malloc(sizeof(Street));
@@ -82,7 +82,7 @@ void street_add_car(Street* s_ptr, int length) // add a car to a street
 				s_ptr->fields[i] = 'X'; // set X for length at beginning
 			}
 		} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
-			for (int i = STREET_LENGTH; i > (STREET_LENGTH - length); i++){
+			for (int i = STREET_LENGTH; i > (STREET_LENGTH - length); i--){
 				s_ptr->fields[i] = 'X'; // set X for length at end
 			}
 		}

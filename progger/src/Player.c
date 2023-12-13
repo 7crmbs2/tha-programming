@@ -9,7 +9,7 @@
 
 Player* player_create()
 {
-	Player *address;
+	Player* address;
 	// dynamic memory allocation to runtime
 	address = malloc(sizeof(Player));
 	//malloc returns NULL pointer, if the allocation fails
@@ -44,7 +44,7 @@ void player_move(Player* p_ptr, char direction)
 
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
-	printf(' ');
+	printf(" ");
 
 	if (direction == PLAYER_UP) {
 		cursor_hoch(speed);
