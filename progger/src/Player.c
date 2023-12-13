@@ -47,7 +47,7 @@ void player_move(Player* p_ptr, char direction)
 	printf(" ");
 
 	if (direction == MOVE_UP) {
-		p_ptr->y -= speed;
+		p_ptr->y -= speed; // x -= 1 same as x = x - 1
 	} else if (direction == MOVE_DOWN) {
 		p_ptr->y += speed;
 	} else if (direction == MOVE_RIGHT) {
