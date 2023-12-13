@@ -58,14 +58,19 @@ void game_init(Game* game_ptr)
 void game_add_traffic(Game* game_ptr)
 {
 	for (int i = 0; i < NUMBER_OF_STREETS; i++){
-		short randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car length
-		street_add_car(game_ptr->road[i], randCar); // add the car to the road if possible
+		if ((rand()%100)+1 <= TRAFFIC_PROBABILITY){
+			short randCar = (rand() % MAX_CAR_LENGTH) + 1; // set max car length
+			street_add_car(game_ptr->road[i], randCar); // add the car to the road if possible
+		}
 	}
 }
 
 void game_proceed(Game* game_ptr)
 {
-	/* IHR CODE */
+	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+		street_proceed(game_ptr->road[i]);
+	}
+	player_move(game_ptr->player_ptr, game_ptr->input_ptr->last_input_player);
 }
 
 void game_print(Game* game_ptr)
