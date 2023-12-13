@@ -23,7 +23,7 @@ Player* player_create()
 
 void player_init(Player* p_ptr)
 {
-	p_ptr->x = PLAYER_XPOS;
+	p_ptr->x = PLAYER_XPOS - STREET_OFFSET;
 	p_ptr->y = PLAYER_YPOS;
 	p_ptr->symbol = PLAYER_SYMBOL;
 	strcpy(p_ptr->color, PLAYER_COLOR);
@@ -47,13 +47,13 @@ void player_move(Player* p_ptr, char direction)
 	printf(" ");
 
 	if (direction == MOVE_UP) {
-		p_ptr->y -= 1;
+		p_ptr->y -= speed;
 	} else if (direction == MOVE_DOWN) {
-		p_ptr->y += 1;
+		p_ptr->y += speed;
 	} else if (direction == MOVE_RIGHT) {
-		p_ptr->x += 1;
+		p_ptr->x += speed;
 	} else if (direction == MOVE_LEFT) {
-		p_ptr->x -= 1;
+		p_ptr->x -= speed;
 	}
 
 	player_print(p_ptr);

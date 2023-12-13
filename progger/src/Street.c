@@ -83,7 +83,7 @@ void street_add_car(Street* s_ptr, int length) // add a car to a street
 
 char street_check_field(Street* s_ptr, int xpos, int ypos) // check if there is an X on the position of the street
 {
-	if (s_ptr->y == ypos && s_ptr->fields[s_ptr->offset + xpos] == 'X'){
+	if (s_ptr->y == ypos && s_ptr->fields[s_ptr->offset + xpos - PLAYGROUND_OFFSET_X] == 'X'){
 		return 1;
 	}
 	return 0;
@@ -91,9 +91,8 @@ char street_check_field(Street* s_ptr, int xpos, int ypos) // check if there is 
 
 void street_print(Street* s_ptr) // print the street
 {
+	cursor_bewegen(PLAYGROUND_OFFSET_X,s_ptr->y);
 	for (int i = s_ptr->offset; i < (STREET_LENGTH - s_ptr->offset); i++){
-		cursor_bewegen(PLAYGROUND_OFFSET_X + i,s_ptr->y);
-		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 		if (s_ptr->fields[i] == 'X'){
 			cursor_setze_farbe(s_ptr->color); // set background to street color
 		}
