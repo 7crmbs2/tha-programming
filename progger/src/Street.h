@@ -11,7 +11,7 @@ struct Street
 {
 	int x;
 	int y;
-	int offset;
+	int offset; // offset of visible part of the array
 	char fields[STREET_LENGTH];
 	char color[9];
 	char direction;

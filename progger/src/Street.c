@@ -29,7 +29,7 @@ void street_init(Street* s_ptr, int x, int y, int offset, char* color, char dire
 	for (int i = 0; i < STREET_LENGTH; i++){
 		s_ptr->fields[i] = ' ';
 	}
-	strcpy(s_ptr->color, color);
+	strcpy(s_ptr->color, color); // copy string into char array
 	s_ptr->direction = direction;
 }
 
@@ -57,7 +57,7 @@ char street_check_free(Street* s_ptr, int number) // return 1 = number*space is 
 			}
 		}
 	} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
-		for (int i = STREET_LENGTH - 1; i > (STREET_LENGTH-1-number); i--){
+		for (int i = STREET_LENGTH - 1; i > (STREET_LENGTH-1-number); i--){ // (STREET_LENGTH-1)=Max Max-number necessary to be able to count down
 			if (s_ptr->fields[i] != ' '){   // check for spaces in number of fields at the end
 				return 0;
 			}
@@ -93,6 +93,7 @@ void street_print(Street* s_ptr) // print the street
 {
 	cursor_bewegen(PLAYGROUND_OFFSET_X,s_ptr->y);
 	for (int i = s_ptr->offset; i < (STREET_LENGTH - s_ptr->offset); i++){
+		cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 		if (s_ptr->fields[i] == 'X'){
 			cursor_setze_farbe(s_ptr->color); // set background to street color
 		}
