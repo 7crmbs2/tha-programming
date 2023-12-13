@@ -30,8 +30,6 @@ void scoreboard_init(Scoreboard* scoreboard_ptr)
 
 void scoreboard_print(Scoreboard* scoreboard_ptr)
 {
-	// lol that next line is not needed, we already get the correct values from the struct I guess
-	// lets make it STREET_VISIBLE / 2 and then add 5-10 so that they don't touch
 	console_zeichne_rechteck(scoreboard_ptr->x, scoreboard_ptr->y, 15, 7, hpallette[4]);
 	cursor_setze_farbe(cpallette[7]); // set cursor to white
 	cursor_setze_farbe(hpallette[0]); // set background to black
