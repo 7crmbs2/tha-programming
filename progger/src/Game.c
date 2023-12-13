@@ -50,7 +50,7 @@ void game_init(Game* game_ptr)
 	game_ptr->input_ptr = input_create();
 
 	// draw a rectangle as game field
-	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y, STREET_VISIBLE, PLAYER_YPOS + 2, PLAYGROUND_BOARDER_COLOR);
+	game_draw_border(game_ptr);
 
 	game_ptr->run = 1;
 }
@@ -75,7 +75,10 @@ void game_proceed(Game* game_ptr)
 
 void game_print(Game* game_ptr)
 {
-	/* IHR CODE */
+	for (int i = 0; i < NUMBER_OF_STREETS; i++){
+		street_print(game_ptr->road[i]);
+	}
+	player_print(game_ptr->player_ptr);
 }
 
 void game_run(Game* game_ptr)
@@ -105,12 +108,38 @@ void game_run(Game* game_ptr)
 	scoreboard_print(game_ptr->scoreboard_ptr);
 }
 
-void game_draw_border(Game* game_ptr)
+void game_draw_border(Game* game_ptr) // draw the game border
 {
-	/* IHR CODE */
+	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X, PLAYGROUND_OFFSET_Y, STREET_VISIBLE, PLAYER_YPOS + 2, PLAYGROUND_BOARDER_COLOR);
 }
 
 void game_check(Game* game_ptr)
 {
-	/* IHR CODE */
+	if (player_compare(game_ptr->player_ptr, game_ptr->destination_ptr)){ // check if player is at destination
+		game_ptr->scoreboard_ptr->score += 10;
+		player_init(game_ptr->player_ptr);
+		player_print(game_ptr->player_ptr);
+		player_print(game_ptr->destination_ptr);
+	} else { // check if player is coliding with car for every street
+		for (int i = 0; i < NUMBER_OF_STREETS; i++){
+			if (game_ptr->player_ptr->y == game_ptr->road[i]->y && game_ptr->player_ptr->x == game_ptr->road[i]->x){ // check if player is coliding with car
+				game_ptr->scoreboard_ptr->lives -= 1; // remove one life
+				player_init(game_ptr->player_ptr); // reset player
+				player_print(game_ptr->player_ptr);
+				if (game_ptr->scoreboard_ptr->lives <= 0){ // check if lives ran out
+					game_ptr->run = 0; // end game
+				}
+			}
+		}
+	}
+	if (((game_ptr->player_ptr->x <= STREET_OFFSET + PLAYGROUND_OFFSET_X) || (game_ptr->player_ptr->x >= PLAYGROUND_OFFSET_X + STREET_OFFSET + STREET_VISIBLE)) ||
+	        (game_ptr->player_ptr->y <= PLAYGROUND_OFFSET_Y) || (game_ptr->player_ptr->y >= PLAYER_YPOS + 2))
+	{
+		game_ptr->scoreboard_ptr->lives -= 1;
+		player_init(game_ptr->player_ptr);
+		game_draw_border(game_ptr);
+		if (game_ptr->scoreboard_ptr->lives <= 0){ // check if lives ran out
+			game_ptr->run = 0; // end game
+		}
+	}
 }

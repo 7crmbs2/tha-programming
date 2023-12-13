@@ -32,8 +32,7 @@ void scoreboard_print(Scoreboard* scoreboard_ptr)
 {
 	// lol that next line is not needed, we already get the correct values from the struct I guess
 	// lets make it STREET_VISIBLE / 2 and then add 5-10 so that they don't touch
-
-	// draw 25 wide, 25 tall big blue framed scoreboard
 	console_zeichne_rechteck(scoreboard_ptr->x, scoreboard_ptr->y, 15, 7, hpallette[4]);
+	//cursor_bewegen()
 	printf("HERE I STILL NEED TO FILL IN STUFF");
 }

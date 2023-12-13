@@ -21,13 +21,6 @@ void start()
 
 int main()
 {
-	Game* myGame = game_create();
-	game_init(myGame);
-
-
-	//Auskommentieren für finalen Spieltest
-	//start();
-
-	getchar();
+	start();
 	return 0;
 }
