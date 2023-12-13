@@ -36,15 +36,15 @@ void street_init(Street* s_ptr, int x, int y, int offset, char* color, char dire
 void street_proceed(Street* s_ptr) // move the street in the corresponding direction
 {
 	if (s_ptr->direction == TRAFFIC_LEFT){ // if the traffic comes from the left
-		for (int i = STREET_LENGTH; i >= 0; i--){ // start moving the fields from the very far right
+		for (int i = STREET_LENGTH - 1; i > 0; i--){ // start moving the fields from the very far right
 			s_ptr->fields[i] = s_ptr->fields[i-1];
 		}
 		s_ptr->fields[0] = ' '; // set the now "empty" / meaningless field 0 as space
 	} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
-		for (int i = 0; i <= STREET_LENGTH; i++){ // start moving the fields from the very left
+		for (int i = 0; i < STREET_LENGTH - 1; i++){ // start moving the fields from the very left
 			s_ptr->fields[i] = s_ptr->fields[i+1];
 		}
-		s_ptr->fields[STREET_LENGTH] = ' '; // fill in the last field in the very last place
+		s_ptr->fields[STREET_LENGTH - 1] = ' '; // fill in the last field in the very last place
 	}
 }
 
@@ -62,7 +62,7 @@ char street_check_free(Street* s_ptr, int number) // return 1 = number*space is 
 		}
 	} else if (s_ptr->direction == TRAFFIC_RIGHT){ // if the traffic comes from the right
 		char spaceUsed = 0;
-		for (int i = STREET_LENGTH; i <= (STREET_LENGTH-number); i--){
+		for (int i = STREET_LENGTH - 1; i > (STREET_LENGTH-number); i--){
 			if (s_ptr->fields[i] != ' '){   // check for spaces in number of fields at the end
 				spaceUsed = 1;
 			}

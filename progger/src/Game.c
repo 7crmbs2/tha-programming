@@ -29,7 +29,7 @@ void game_init(Game* game_ptr)
 		char randDir = rand() % 2; // set random direction for each street
 
 		game_ptr->road[i] = street_create();
-		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], randDir);
+		street_init(game_ptr->road[i], PLAYGROUND_OFFSET_X, STREET_FIRST_Y+i, STREET_OFFSET, hpallette[randColor], 0);
 		street_add_car(game_ptr->road[i], randCar);
 	}
 
@@ -80,6 +80,7 @@ void game_print(Game* game_ptr)
 		street_print(game_ptr->road[i]);
 	}
 	player_print(game_ptr->player_ptr);
+	scoreboard_print(game_ptr->scoreboard_ptr);
 }
 
 void game_run(Game* game_ptr)
@@ -98,7 +99,7 @@ void game_run(Game* game_ptr)
 		//Check Player Position and Collision
 		game_check(game_ptr);
 		//Pause Main-Thread to slow down the game
-		sleep(GAME_TICK_DURATION_MS);
+		usleep(GAME_TICK_DURATION_MS * 1000); // changed this for linux
 	}
 	//Game Over
 	console_leeren();				//Leere Terminal
@@ -112,7 +113,7 @@ void game_run(Game* game_ptr)
 void game_draw_border(Game* game_ptr) // draw the game border
 {
 	// STREET_VISIBLE + 2 and then - 1 on the x to ensure no overlap
-	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X - 1, PLAYGROUND_OFFSET_Y - 1, STREET_VISIBLE + 2, PLAYER_YPOS + 1, PLAYGROUND_BOARDER_COLOR);
+	console_zeichne_rechteck(STREET_OFFSET + PLAYGROUND_OFFSET_X - 1, PLAYGROUND_OFFSET_Y, STREET_VISIBLE + 2, PLAYER_YPOS + 1, PLAYGROUND_BOARDER_COLOR);
 }
 
 void game_check(Game* game_ptr)
@@ -124,6 +125,9 @@ void game_check(Game* game_ptr)
 		player_print(game_ptr->destination_ptr);
 	} else { // check if player is coliding with car for every street
 		for (int i = 0; i < NUMBER_OF_STREETS; i++){
+
+			// street_check_field verwenden
+
 			if (game_ptr->player_ptr->y == game_ptr->road[i]->y && game_ptr->player_ptr->x == game_ptr->road[i]->x){ // check if player is coliding with car
 				game_ptr->scoreboard_ptr->lives -= 1; // remove one life
 				player_init(game_ptr->player_ptr); // reset player

@@ -46,14 +46,14 @@ void player_move(Player* p_ptr, char direction)
 	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
 	printf(" ");
 
-	if (direction == PLAYER_UP) {
-		cursor_hoch(speed);
-	} else if (direction == PLAYER_DOWN) {
-		cursor_runter(speed);
-	} else if (direction == PLAYER_RIGHT) {
-		cursor_rechts(speed);
-	} else if (direction == PLAYER_LEFT) {
-		cursor_links(speed);
+	if (direction == MOVE_UP) {
+		p_ptr->y -= 1;
+	} else if (direction == MOVE_DOWN) {
+		p_ptr->y += 1;
+	} else if (direction == MOVE_RIGHT) {
+		p_ptr->x += 1;
+	} else if (direction == MOVE_LEFT) {
+		p_ptr->x -= 1;
 	}
 
 	player_print(p_ptr);
