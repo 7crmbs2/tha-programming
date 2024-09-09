@@ -12,6 +12,7 @@ struct Game
 	struct Input* input_ptr;
 	char run;
 };
+
 typedef struct Game Game;
 
 Game* game_create();

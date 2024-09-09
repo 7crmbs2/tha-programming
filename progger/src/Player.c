@@ -31,9 +31,9 @@ void player_init(Player* p_ptr)
 
 void player_print(Player* p_ptr)
 {
+	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
 	cursor_setze_farbe(HINTERGRUND_SCHWARZ); // set background to black
 	cursor_setze_farbe(p_ptr->color); // set cursor to player color
-	cursor_bewegen(p_ptr->x, p_ptr->y); // move the cursor to the correct coordinates
 	printf("%c", p_ptr->symbol); // print player symbol
 	cursor_setze_farbe(CURSOR_SCHWARZ); // set cursor to black
 }
@@ -47,7 +47,7 @@ void player_move(Player* p_ptr, char direction)
 	printf(" ");
 
 	if (direction == MOVE_UP) {
-		p_ptr->y -= speed;
+		p_ptr->y -= speed; // x -= 1 same as x = x - 1
 	} else if (direction == MOVE_DOWN) {
 		p_ptr->y += speed;
 	} else if (direction == MOVE_RIGHT) {
